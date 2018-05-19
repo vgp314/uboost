@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: yboost
+  pool: 5
+  username: vinicius
+  password: 31377001
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: yboost
+  pool: 5
+  username: vinicius
+  password: 31377001
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: yboost
+  pool: 5
+  username: vinicius
+  password: 31377001
