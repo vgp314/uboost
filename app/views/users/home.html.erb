@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>UBoost</title>
+  <%
+=begin
+
+  <!-- Bootstrap core CSS-->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- Custom styles for this template-->
+  <link href="sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="project.css">
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <link href="dist/css/select2.min.css" rel="stylesheet" />
+  <script src="mask.js" type="text/javascript"></script>
+  <script src="dist/js/select2.min.js"></script>
+  <script src="cadastro.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Core plugin JavaScript-->
+  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <!-- Custom scripts for this page-->
+  <script src="perfil.js"></script>
+
+=end%>
+  <%=stylesheet_link_tag "project"%>
+  <%=stylesheet_link_tag "sb-admin"%>
+
+
+</head>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<!-- Navigation-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+  <img style="height:50px;" src="img/uboost-logo-white.png" alt="">
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarResponsive">
+    <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+      <li class="mt-4 nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+        <a class="nav-link" href="#">
+          <i class="fa fa-fw fa-dashboard"></i>
+          <span id="LinkViewResumeFeedback" class="nav-link-text">Análise Curricular</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+        <a class="nav-link" href="charts.html">
+          <i class="fa fa-fw fa-area-chart"></i>
+          <span class="nav-link-text">Treinamentos</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+        <a class="nav-link" href="tables.html">
+          <i class="fa fa-fw fa-table"></i>
+          <span class="nav-link-text">Recrutamento</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-wrench"></i>
+          <span class="nav-link-text">Nosso Blog</span>
+        </a>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Cadastro">
+        <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+          <i class="fa fa-fw fa-file"></i>
+          <span class="nav-link-text">Meus Dados</span>
+        </a>
+        <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+          <li>
+            <a id="LinkViewEditUserData" href="#">Editar Meus Dados</a>
+          </li>
+        </ul>
+      </li>
+      <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+        <a class="nav-link" href="#">
+          <i class="fa fa-fw fa-link"></i>
+          <span class="nav-link-text">Link</span>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav sidenav-toggler">
+      <li class="nav-item">
+        <a class="nav-link text-center" id="sidenavToggler">
+          <i class="fa fa-fw fa-angle-left"></i>
+        </a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-envelope"></i>
+          <span class="d-lg-none">Messages
+                  <span class="badge badge-pill badge-primary">12 New</span>
+                  </span>
+          <span class="indicator text-primary d-none d-lg-block">
+                  <i class="fa fa-fw fa-circle"></i>
+                  </span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="messagesDropdown">
+          <h6 class="dropdown-header">New Messages:</h6>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+            <strong>David Miller</strong>
+            <span class="small float-right text-muted">11:21 AM</span>
+            <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+            <strong>Jane Smith</strong>
+            <span class="small float-right text-muted">11:21 AM</span>
+            <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+            <strong>John Doe</strong>
+            <span class="small float-right text-muted">11:21 AM</span>
+            <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item small" href="#">View all messages</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle mr-lg-2" id="alertsDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fa fa-fw fa-bell"></i>
+          <span class="d-lg-none">Alerts
+                  <span class="badge badge-pill badge-warning">6 New</span>
+                  </span>
+          <span class="indicator text-warning d-none d-lg-block">
+                  <i class="fa fa-fw fa-circle"></i>
+                  </span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="alertsDropdown">
+          <h6 class="dropdown-header">New Alerts:</h6>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+                        <span class="text-success">
+                        <strong>
+                        <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                        </span>
+            <span class="small float-right text-muted">11:21 AM</span>
+            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+                        <span class="text-danger">
+                        <strong>
+                        <i class="fa fa-long-arrow-down fa-fw"></i>Status Update</strong>
+                        </span>
+            <span class="small float-right text-muted">11:21 AM</span>
+            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">
+                        <span class="text-success">
+                        <strong>
+                        <i class="fa fa-long-arrow-up fa-fw"></i>Status Update</strong>
+                        </span>
+            <span class="small float-right text-muted">11:21 AM</span>
+            <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item small" href="#">View all alerts</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0 mr-lg-2">
+          <div class="input-group">
+            <input class="form-control" type="text" placeholder="Busque por Vagas">
+            <span class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i>
+                        </button>
+                        </span>
+          </div>
+        </form>
+      </li>
+      <li class="nav-item">
+        <%= link_to "Sair", logout_path, method: :delete, class:"nav-link" %>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div id = "ViewResumeFeedback" class="content-wrapper">
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-sm-9">
+        <ul class="breadcrumb">
+          <li id="breadcumb-1-step" class="breadcumb-item active"><a href="javascript:void(0);">Dados Pessoais</a></li>
+          <li id="breadcumb-2-step" class="breadcumb-item"><a href="javascript:void(0);">Formação</a></li>
+          <li id="breadcumb-3-step" class="breadcumb-item"><a href="javascript:void(0);">Área de Atuação</a></li>
+          <li id="breadcumb-4-step" class="breadcumb-item"><a href="javascript:void(0);">Dados Profissionais</a></li>
+        </ul>
+        <div id="form-step1" class="card">
+          <div class="header-form">
+            <h5 class="header-form">Dados Pessoais</h5>
+          </div>
+          <div class="card-body">
+            <form class="personal-data">
+              <div class="form-row">
+                <div class="form-group col-sm-12">
+                  <label for="full-name">Nome Completo</label>
+                  <input type="text" class="form-control" id="full-name">
+                  <span id="error-name" hidden class="pt-2 red-error">Nome deve ser Preenchido</span>
+
+                </div>
+              </div>
+              <div class="form-row ">
+                <div  class="form-group col-sm-8">
+                  <label for="email">E-mail</label>
+                  <input uboost-grade="false" redo-feedback="0" type-selection = "input-text" type-feedback = "email" type="email" class="form-control feedback" id="email">
+                  <span id="error-email" hidden class="pt-2 red-error">E-mail inválido</span>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="birth_date">Nascimento</label>
+                  <input type="text" class="form-control date-class" id="birth-date">
+                  <span id="error-birth" hidden class="pt-2 red-error">Data inválida</span>
+                </div>
+              </div>
+              </br>
+              <hr>
+              <button type="button" data-step = "1" class="btn btn-success float-right next-step-cadastro mr-12">Prosseguir</button>
+            </form>
+          </div>
+        </div>
+        <div id="form-step2" class="card" hidden>
+          <div class="header-form">
+            <h5 class="header-form">Formação</h5>
+          </div>
+          <div class="card-body">
+            <form class="mt-1 mb-1 personal-data no-feedback">
+              <div class="form-row formacao" id="formacao-1" formacao-number='1'>
+                <div class="form-group col-sm-3">
+                  <label for="type_degree">Formação</label>
+                  <select redo-feedback="1" formacao-number='1' type-selection = "select" type-feedback = "type-degree" class="form-control  feedback type-degree" id="type_degree">
+                    <option class='default-formacao'> </option>
+                    <option>Graduação</option>
+                    <option>Especialização</option>
+                    <option>Mestrado</option>
+                    <option>Doutorado</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-4">
+                  <label for="degree">Curso</label>
+                  <select redo-feedback="1" type-selection = "select" type-feedback = "degree" class=" form-control feedback degree" formacao-number='1' class="form-control" id="degree">
+                    <option class='default-formacao'> </option>
+                    <option>Biologia marinha</option>
+                    <option>Biologia (licenciatura)</option>
+                    <option>Biomedicina</option>
+                    <option>Botânica</option>
+                    <option>Ciências Agrárias (licenciatura)</option>
+                    <option>Ciências Ambientais</option>
+                    <option>Ciências Biológicas</option>
+                    <option>Ciências da Saúde</option>
+                    <option>Ciências do Meio Aquático</option>
+                    <option>Ecologia</option>
+                    <option>Educação física (licenciatura)</option>
+                    <option>Enfermagem (licenciatura)</option>
+                    <option>Fisioterapia</option>
+                    <option>Fonoaudiologia</option>
+                    <option>Gerontologia</option>
+                    <option>Medicina</option>
+                    <option>Medicina veterinária</option>
+                    <option>Meteorologia</option>
+                    <option>Microbiologia e Imunologia</option>
+                    <option>Naturologia</option>
+                    <option>Neurociência</option>
+                    <option>Nutrição</option>
+                    <option>Odontologia</option>
+                    <option>Quiropraxia</option>
+                    <option>Saúde Coletiva</option>
+                    <option>Terapia ocupacional</option>
+                    <option>Zootecnia</option>
+                  </select>
+                </div>
+                <div class="form-group col-sm-5">
+                  <label for="school">Instituição</label>
+                  <select redo-feedback="1" type-selection = "select" formacao-number='1' type-feedback = "school" class="form-control feedback school" class="form-control" id="school">
+                    <option class='default-formacao'></option>
+                    <option>Trevisan Escola de Negocios</option>
+                    <option>Universidade Cândido Mendes (UCAM)</option>
+                    <option>Universidade Castelo Branco (UCB)</option>
+                    <option>Universidade Estácio de Sá</option>
+                    <option>Universidade do Grande Rio (UNIGRANRIO)</option>
+                    <option>Universidade Gama Filho (UGF)</option>
+                    <option>Universidade Santa Úrsula (USU)</option>
+                    <option>Universidade Severino Sombra (USS) Flamengo)</option>
+                    <option>Universidade Veiga de Almeida (UVA)</option>
+                    <option>Pontifícia Universidade Católica do Rio de Janeiro (PUCRIO)</option>
+                    <option>Centro Brasileiro de Pesquisas Físicas (CBPF)</option>
+                    <option>União das Instituições Eduçacionais do Estado de São Paulo (UNIESP)</option>
+                    <option>Comissão Nacional de Energia Nuclear (CNEN)</option>
+                  </select>
+                </div>
+
+              </div>
+              <button type="button" class="btn btn-info add-formacao">Adicionar Formação</button>
+              <button hidden type="button" class="btn btn-danger exclude-formacao" data-toggle="modal" data-target="#modalformacao" data-whatever="@getbootstrap"> Excluir Formação</button>
+              </br>
+              </br>
+              <hr>
+              <button type="button" data-step = "2" class="btn btn-primary float-left back-step-cadastro ">Voltar</button>
+              <button type="button" data-step = "2" class="btn btn-success float-right next-step-cadastro ">Prosseguir</button>
+            </form>
+          </div>
+        </div>
+        <div id="form-step3" class="card" hidden>
+          <div class="header-form">
+            <h5 class="header-form">Área de Atuação</h5>
+          </div>
+          <div class="card-body">
+            <form class="ml-3 mr-1 mt-1 mb-1 personal-data no-feedback">
+              <div class="form-group col-sm-12 pl-0">
+                <label for = "professional_goal">Objetivo Profissional</label>
+                <textarea type-selection = "text" type-feedback="professional-goal" id="professional_goal" class="form-control feedback"></textarea>
+              </div>
+              <div id="atuacao-1" class="atuacao">
+                <div class="form-row">
+                  <div class="form-group col-sm-4">
+                    <label for="occupation-area">Área de Atuação</label>
+                    <select atuacao-number="1" redo-feedback="1" type-selection = "select" type-feedback = "occupation-area" class="occupation-area form-control feedback" class="form-control" id="occupation-area">
+                      <option></option>
+                      <option>Administração</option>
+                      <option>Agricultura, Pecuária, Veterinária</option>
+                      <option>Alimentação / Gastronomia</option>
+                      <option>Arquitetura, Decoração, Design</option>
+                      <option>Artes</option>
+                      <option>Auditoria>
+                      <option>Ciências, Pesquisa</option>
+                      <option>Comercial, Vendas</option>
+                      <option>Engenharia</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="specialization">Especialização</label>
+                  <select atuacao-number="1" redo-feedback="1" type-selection = "select" type-feedback = "specialization-area" multiple class="specialization-area specialization-class feedback" id="specialization" multiple="multiple" style="width:100%">
+                  </select>
+                </div>
+              </div>
+              <button type="button" class="btn btn-info add-occupation-area">Adicionar Atuação</button>
+              <button hidden type="button" data-toggle="modal" data-target="#modalatuacao" class="btn btn-danger exclude-occupation-area">Excluir Atuação</button>
+              </br>
+              </br>
+              <hr>
+              <button type="button" data-step = "3" class="btn btn-primary float-left back-step-cadastro ">Voltar</button>
+              <button type="button" data-step = "3" class="btn btn-success float-right next-step-cadastro ">Prosseguir</button>
+            </form>
+          </div>
+        </div>
+        <div id="form-step4" class="card" hidden>
+          <div class="header-form">
+            <h5 class="header-form">Dados Profissionais</h5>
+          </div>
+          <div class="card-body">
+            <form class="mt-1 mb-1 professional-data no-feedback">
+              <div class="form-row experiencia" id="experiencia-1">
+                <div class="form-group col-sm-6">
+                  <label for="enterprise">Empresa</label>
+                  <input type="text" experience-number='1' redo-feedback="1" type-selection = "input-text" type-feedback = "enterprise" class="form-control feedback enterprise" id="enterprise">
+                </div>
+                <div class="form-group col-sm-6">
+                  <label for="position">Cargo</label>
+                  <input type="text" experience-number='1' redo-feedback="1" type-selection = "input-text" type-feedback = "position" class="form-control feedback position" id="enterprise">
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="tasks">Atribuições e Tarefas</label>
+                  <textarea experience-number='1' class="form-control feedback" redo-feedback="1" type-selection = "input-text" type-feedback = "tasks">
+                                    </textarea>
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="begin-enterprise-date">Data de Início</label>
+                  <input type="text" redo-feedback="1" type-selection = "input-text" type-feedback = "enterprise-date-begin" class="form-control date-class feedback" id="begin-enterprise-date">
+                </div>
+                <div class="form-group col-sm-3">
+                  <label for="final-enterprise-date">Data de Fim</label>
+                  <input type="text" redo-feedback="1" type-selection = "input-text" type-feedback = "enterprise-date-begin" class="form-control feedback date-class mb-10" id="final-enterprise-date">
+                  <label class="radio-inline">
+                    <input type="checkbox" name="inlineRadioOptionsWeek" id="Checkbox3" value="3">&nbsp;Emprego Atual</label>
+                </div>
+                <div class="form-group col-sm-12">
+                  <label for="tasks">Motivo da Saída</label>
+                  <textarea class="form-control feedback" redo-feedback="1" type-selection = "input-text" type-feedback = "tasks">
+                                    </textarea>
+                </div>
+
+              </div>
+              <hr>
+              <button type="button" class="btn btn-info add-professional">Adicionar Experiência</button>
+              <button hidden data-toggle="modal" data-target="#modalexperiencia" type="button" class="btn btn-danger exclude-professional">Excluir Experiência</button>
+              </br>
+              </br>
+              <hr>
+              <button type="button" data-step = "4" class="btn btn-primary float-left back-step-cadastro ">Voltar</button>
+              <button type="button" data-step = "4" class="btn btn-success float-right next-step-cadastro ">Prosseguir</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- col.// -->
+      <div id="feedback-area" style="margin-top:63px; padding-left:15px" class="col-sm-3">
+
+
+      </div>
+    </div>
+
+  </div>
+</div>
+<div class="modal fade" id="modalformacao" tabindex="-1" role="dialog" aria-labelledby="modalformacaoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalformacaoLabel">Exclusão de Formação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-formacao">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalatuacao" tabindex="-1" role="dialog" aria-labelledby="modalatuacaoLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalatuacaoLabel">Exclusão de Atuação</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-atuacao">
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalexperiencia" tabindex="-1" role="dialog" aria-labelledby="modalexperienciaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalexperienciaLabel">Exclusão de Experiências</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modal-body-experiencia">
+      </div>
+    </div>
+  </div>
+</div>
+<div hidden id = "ViewEditUserData" class="content-wrapper">
+  <div class="container-fluid">
+    <div class="mt-5 p-5 m-auto mx-auto mb-1 w-50">
+      <form class="form-horizontal">
+        <fieldset>
+          <!-- Form Name -->
+          <div class="rounded-circle text-center">
+            <img style="height:100px;" src="img/logo-small.png" alt="">
+          </div>
+          </br>
+          <!-- Text input-->
+          <div class="mb-1">
+            <input id="textinput" name="textinput" type="text" placeholder="Nome Completo" class="form-control input-md" required="">
+          </div>
+          <div class="mb-1">
+            <input readonly id="textinput" name="textinput" type="text" placeholder="E-mail" class="form-control input-md" required="">
+          </div>
+          <div class="form-row">
+            <fieldset class="col-sm-6 col-xs-12">
+              <input id="tel" name="tel" type="text" placeholder="Telefone" class="tel-class form-control mb-1">
+            </fieldset>
+            <fieldset class="col-sm-6 col-xs-12">
+              <input id="birth_date" name="birth_date" type="text" placeholder="Data de Nascimento" class="date-class form-control mb-1">
+            </fieldset>
+          </div>
+          <div class="form-row">
+            <fieldset class="col-sm-6 col-xs-6">
+              <input id="cep" name="cep" type="text" placeholder="CEP" class="cep form-control mb-1">
+            </fieldset>
+            <fieldset class="col-sm-6 col-xs-6">
+              <input id="neighborhood" name="neighborhood" type="text" placeholder="Bairro" class="form-control mb-1">
+            </fieldset>
+          </div>
+          <div class="form-row">
+            <fieldset class="col-sm-12 col-xs-12">
+              <input id="address" name="address" type="text" placeholder="Logradouro" class="form-control mb-1">
+            </fieldset>
+          </div>
+          <div class="form-row">
+            <fieldset class="col-sm-6 col-xs-6">
+              <input id="city" name="city" type="text" placeholder="Cidade" class="form-control mb-1">
+            </fieldset>
+            <fieldset class="col-sm-6 col-xs-6">
+              <input id="state" name="state" type="text" placeholder="Estado" class="form-control mb-1">
+            </fieldset>
+          </div>
+          <div class="mb-1 form-row collapse" id="change-password">
+            <div class="col-sm-12 col-xs-12 mb-1">
+              <input id="oldpassword" name="oldpassword" type="password" placeholder="Senha Antiga" class="bg-aw form-control input-md">
+            </div>
+            <div class="col-sm-6 col-xs-6 mb-1">
+              <input id="newpassword" name="newpassword" type="password" placeholder="Senha Nova" class="bg-aw form-control input-md">
+            </div>
+            <div class="col-sm-6 col-xs-6">
+              <input id="new_password_confirmation" name="new_password_confirmation" type="password" placeholder="Confirmar Senha" class="bg-aw form-control input-md">
+            </div>
+          </div>
+          <div class="mb-4">
+            <div  class="ml-1 pt-1 float-left">
+              <a data-toggle="collapse" href="#change-password" role="button" aria-expanded="false" aria-controls="#change-password">Mudar Senha</a>
+            </div>
+            <div class="float-right">
+              <button type="button" class="btn btn-primary">Salvar</button>
+            </div>
+          </div>
+          </br>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>

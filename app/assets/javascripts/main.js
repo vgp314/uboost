@@ -4,30 +4,40 @@ var number_professional = 1;
 var templateFeedback = "<div id = 'feedback-box-${id}' class='feedback-box card mt-1 mb-1 feedback-generic' ><div class='card-body text-feedback'> ${TEXT}</div></div>";
 var number_feedback = 0;
 var number_specialization = 1;
+//background:#2c3e50 !important;
 
-var templateFeedback = "<div id='feedback-box-${id}' class='feedback-box'>"
-							+"<div class='feedback-box-header'>"
+var titulosFeedback = {"email":"E-mail", "type-degree":"Formação","enterprise":"Empresa","position":"Cargo","tasks":"Tarefas","degree":"Curso","school":"Instituição","professional-goal":"Objetivo","specialization-area":"Especialização","occupation-area":"Atuação"}
+
+var templateFeedback = "<div id='feedback-box-${id}' class='feedback-box '>"
+							+"<div class='feedback-box-header ${class-feedback}' >"
 								+"<h2>+${type-feedback}</h2>"
 							+"</div>"
-							+"<div class='feedback-box-body  ${class-feedback}'>"
+							+"<div class='feedback-box-body border-feedback ${border-feedback} '>"
 								+"<p>${feedback}<p>"
+								+"<div hidden = '${hidden}' class='feedback-uboost  mx-auto text-center'>"
+									+"<img class='logo-feedback' src='img/logo-feedback-orange.png' alt=''>"
+									+"<img class='logo-feedback' src='img/logo-feedback-orange.png' alt=''>"
+									+"<img class='logo-feedback' src='img/logo-feedback-orange.png' alt=''>"
+									+"<img class='logo-feedback' src='img/logo-feedback-orange.png' alt=''>"
+									+"<img class='logo-feedback' src='img/logo-feedback-orange.png' alt=''>"
+								+"</div>"							
 							+"</div>"
 						+"</div>";
 var templateFormacao = "<div class='form-row formacao' id='formacao-{id}' formacao-number='{formacao-number}'>"
 						+"<div class='form-group col-sm-3'>"
 							+"<label for='type_degree'>Formação</label>"
-							+"<select redo-feedback='1' type-selection = 'select' type-feedback = 'type-formacao' formacao-number='{formacao-number}' class='form-control feedback type-degree' id='type_degree'>"
-								+"<option> </option>"
+							+"<select redo-feedback='1' type-selection = 'select' type-feedback = 'type-degree' formacao-number='{formacao-number}' class='form-control feedback type-degree' id='type_degree'>"
+								+"<option class='default-formacao'> </option>"
 								+"<option>Graduação</option>"
 								+"<option>Especialização</option>"
 								+"<option>Mestrado</option>"
 								+"<option>Doutorado</option>"
 							+"</select>	"						
 						+"</div>"
-						+"<div class='form-group col-sm-3'>"
+						+"<div class='form-group col-sm-4'>"
 							+"<label for='degree'>Curso</label>"
 							+"<select redo-feedback='1' type-selection = 'select' type-feedback = 'degree' class='form-control feedback degree' formacao-number='{formacao-number}' id='degree'>"
-								+"<option> </option>"
+								+"<option class='default-formacao'> </option>"
 								+"<option>Biologia marinha</option>"
 								+"<option>Biologia (licenciatura)</option>"
 								+"<option>Biomedicina</option>"
@@ -63,7 +73,7 @@ var templateFormacao = "<div class='form-row formacao' id='formacao-{id}' formac
 
 							+"<label for='school'>Instituição</label>"
 							+"<select redo-feedback='1' type-selection = 'select' type-feedback = 'school' formacao-number='{formacao-number}' class='form-control feedback school' class='form-control' id='school'>"
-								+"<option></option>"
+								+"<option class='default-formacao'></option>"
 								+"<option>Trevisan Escola de Negocios</option>"
 								+"<option>Universidade Cândido Mendes (UCAM)</option>"
 								+"<option>Universidade Castelo Branco (UCB)</option>"
@@ -79,10 +89,7 @@ var templateFormacao = "<div class='form-row formacao' id='formacao-{id}' formac
 								+"<option>Comissão Nacional de Energia Nuclear (CNEN)</option>"
 							+"</select>"
 						+"</div>"
-						+"<div class='form-group col-sm-1 '>"
-							+"<label for='type_degree'> &nbsp;</label>"
-							+"<i id='type_degree' hidden data-target='#formacao'	class='form-control far fa-trash-alt trash-feedback'></i>"
-						+"</div>"						
+												
 					+"</div>";
 
 
@@ -143,17 +150,131 @@ var templateProfessional = "<div class='form-row experiencia' id='experiencia-{i
 					+"<label class='radio-inline'>"
     				+"<input type='checkbox' name='inlineRadioOptionsWeek' id='Checkbox3' value='3'>&nbsp;Emprego Atual</label>"							  	
 				+"</div>"
-				+"<div class='form-group col-sm-1'>"
-					+"<label for='enterprise-trash'> &nbsp;</label>"
-					+"<i id='enterprise-trash' data-target='#professional-info' class='form-control far fa-trash-alt trash-e trash-feedback'></i>"
-				+"</div>"	
+				
 		+"</div>"
+		
+
+		
 $(document).ready(function () { 
+	function validateFields(step){
+	if(step=="1"){
+		return validateFieldsStep1();
+	}
+	if(step=='2'){
+		return validateFieldsStep2();
+	}
+	if(step=='3'){
+		return validateFieldsStep3();
+	}
+}	
+	function validateFieldsStep2($div){
+		return true;	 
+	}
+	
+	function validateAddingSpecialization(){
+		var return_function = true;
+		var $divs = $(".atuacao")
+		$divs.each(function(index){			
+			$selection = $($divs[index]).find((".select2-selection__choice"))
+			if($selection.length==0){	
+				return_function =  false;
+			};
+
+		});		
+		if(!return_function){
+			alert("A especialização deve ser respondida para a atuação prrenchida");
+		}
+		return return_function;
+	}
+	function validateFieldsStep3(){
+		var $professional_goal = $("#professional_goal")
+		var $divs = $(".atuacao")
+		
+		if(!validateAddingSpecialization()){
+			return false;
+		};
+		
+		//validação do objetivo profissional
+		if($professional_goal.val().length<=1){
+			return false;
+		}
+				
+		
+		
+		return true;
+	}
+	function validateAddingFormacao($div){
+		$type_degree = $div.find(".type-degree")
+		$degree = $div.find(".degree")
+		$school = $div.find(".school")
+		console.log($type_degree)
+		console.log($degree)
+		console.log($school)
+		var option_type_degree = $type_degree.find("option:selected").val();
+		var option_degree = $degree.find("option:selected").val();
+		var option_school = $school.find("option:selected").val();
+		
+		if(option_type_degree == ""){
+			return false;
+		}
+		if(option_degree == ""){
+			return false;
+		}
+		if(option_school == ""){
+			return false;
+		}
+		$(".default-formacao").remove();
+		return true;
+	}
+	function validateAddingAtuacao($div){
+		
+		$occupation_area = $div.find(".occupation-area")
+		$specialization = $div.find(".specialization-class")
+		console.log($occupation_area)
+		console.log($specialization)
+		
+		
+		
+		return true;
+	}
+	function validateFieldsStep1(){
+		var $email = $("#email");
+		var $birth_date = $("#birth-date");
+		var $full_name = $("#full-name");
+		var hide_error = false;
+		var $erro_email = $("#error-email");
+		var $erro_birth = $("#error-birth");
+		var $erro_name = $("#error-name");
+		var return_boolean = true;
+		
+		//validação de email;
+		if(!testEmail($email.val())){
+					$email.focus();				
+					$erro_email.removeAttr("hidden");
+					return false;
+		}else{
+			$erro_email.attr("hidden",true);
+		}
+		
+		//validação da data de nascimento;
+		if(!testBirthDate($birth_date.val())){
+			$birth_date.focus();	
+			$erro_birth.removeAttr("hidden");
+			return false;
+			
+		}else{
+			$erro_birth.attr("hidden",true);
+		}
+		//Validação da Presença do Nome Completo
+		if($full_name.val().length ==0){
+			$full_name.focus();				
+			$erro_name.removeAttr("hidden");
+			return false;
+		}
+		return true;	
+	}	
 	$('#modalformacao').on('show.bs.modal', function (event) {
-			if($(".formacao").length<=1){
-				$('#modalformacao').modal('hide'); 
-				return;
-			}
+			
 			$("#modal-body-formacao").html("");
 			var degrees = {}
 			$("#form-step2").find(".degree").each(function(index){			
@@ -310,19 +431,16 @@ $(document).ready(function () {
 		}
 	);
     $(".next-step-cadastro").on("click", function (evt) {
-		actual_step = actual_step+1;
+		
 		var step = $(this).attr("data-step")
+		if(!validateFields(step)) 
+			return false;
+		actual_step = actual_step+1;
+		console.log("teste");
 		if(step == "1"){
-			if(!testEmail()){
-				$("#email").focus();
-				$("#error-email").removeAttr("hidden");
-				return false;
-			}else{
-				$("#error-email").attr("hidden",true);
-			}
-			//if(testBirthDate()){
-
-			//}
+			
+			
+			
 			$("#form-step1").hide();
 			$("#form-step2").removeAttr('hidden').show();			
 			$("#breadcumb-1-step").removeClass("active").addClass("completed");
@@ -349,24 +467,29 @@ $(document).ready(function () {
 		if(step == "2"){
 			$("#form-step1").removeAttr('hidden').show();				
 			$("#form-step2").hide();	
-			$("#breadcumb-second-step").removeClass("active");
-			$("#breadcumb-first-step").removeClass("completed").addClass("active");			
+			$("#breadcumb-2-step").removeClass("active");
+			$("#breadcumb-1-step").removeClass("completed").addClass("active");			
 		}
 		if(step == "3"){
 			$("#form-step2").removeAttr('hidden').show();
 			$("#form-step3").hide();
-			$("#breadcumb-third-step").removeClass("active");
-			$("#breadcumb-second-step").removeClass("completed").addClass("active");	
+			$("#breadcumb-3-step").removeClass("active");
+			$("#breadcumb-2-step").removeClass("completed").addClass("active");	
 		}
 		if(step == "4"){
 			$("#form-step3").removeAttr('hidden').show();
 			$("#form-step4").hide();
-			$("#breadcumb-fourth-step").removeClass("active");
-			$("#breadcumb-third-step").removeClass("completed").addClass("active");	
+			$("#breadcumb-4-step").removeClass("active");
+			$("#breadcumb-3-step").removeClass("completed").addClass("active");	
 		}
         
     });
 	$(".add-formacao").on("click", function (evt) {
+		if(!validateAddingFormacao($("#formacao-"+number_formacao))){
+			alert("Preencher todas as informações de formação.");
+			return false;
+		}
+			
 		number_formacao+=1;		
 		formacao = templateFormacao.replace("{id}",number_formacao).replace("{formacao-number}",number_formacao);		
 		$(formacao).insertBefore($(".add-formacao"));
@@ -396,7 +519,12 @@ $(document).ready(function () {
 		}
     });
 	$(".add-occupation-area").on("click", function (evt) {
-		
+		console.log("5");
+		if(!validateAddingSpecialization()){
+			console.log("4");
+			return false;
+		}
+		validateAddingAtuacao($("#atuacao-"+number_specialization))
 		number_specialization+=1;
 		var content = templateOccupationSpecialization.replace("{id}",number_specialization)
 		var $element = $(content).insertBefore($(".add-occupation-area"));
@@ -445,6 +573,7 @@ $(document).ready(function () {
 
 		var type_feedback = $(this).attr("type-feedback");
 		var type_selection = $(this).attr("type-selection");
+		var uboost_grade = $(this).attr("uboost-grade");
 		var value = "";
 		switch(type_selection){
 			case "input-text":
@@ -459,7 +588,7 @@ $(document).ready(function () {
 			
 		}
 		removeLastFeedback();
-		feedback(type_feedback, value);
+		feedback(type_feedback, value,uboost_grade);
         addClassLastFeedback();
     });
 	
@@ -508,38 +637,68 @@ $(document).ready(function () {
 	}
 	
 	
-	function giveFeedback(text){
+	function giveFeedback(type,value,uboost_grade){
 		number_feedback+=1;
-		var feedback = getFeedback(text);
+		var feedback = getFeedback(type,value,uboost_grade);
 		html = $("#feedback-area").html();
 		$("#feedback-area").html(feedback+html);
 		
 	}
 	
-	function testEmail(){
-		var email = $("#email").val();
+	
+	function testEmail(email){
 		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     	return re.test(String(email).toLowerCase());
 	}
+	function testBirthDate(birth_date){
+		var d = parseInt(birth_date.slice(0,2));
+		
+		var m = parseInt(birth_date.slice(3,5));
+		
+		var y = parseInt(birth_date.slice(6,10));
+
+		var daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+		// If evenly divisible by 4 and not evenly divisible by 100,
+		// or is evenly divisible by 400, then a leap year
+		if ((!(y % 4) && y % 100) || !(y % 400)) {
+			daysInMonth[1] = 29;
+		}
+		if(m<1 || m>12)
+			return false;
+		return !(/\D/.test(String(d))) && d > 0 && d <= daysInMonth[--m]
+	}
 	
-	function getFeedback(text){
+	function getFeedback(type,value,uboost_grade){
+		console.log(type)
+		var title = titulosFeedback[type]
+		var text = type+"-"+value
+		if(type =="email"){
+			text = "Atenção! Recomendamos que o seu e-mail seja o mais prático possível. Evite nomes depersonagens, características físicas ou apelidos.Por que não usar por exemplo, jose.lima@uboost.me invés de carioquinha.moreno@uboost.me?";
+		}
+		
 		var class_feedback = "bg-green";
+		var border_feedback = "border-green";
 		if(actual_step == 1){
-			class_feedback = "bg-green" 
+			class_feedback = "bg-green" ;
+			border_feedback = "border-green";
 		}
 		else if (actual_step == 2){
 			class_feedback = "bg-blue" 
+			border_feedback = "border-blue";
 		}
-		else if (actual_step == 3){
+		else if (actual_step == 3){			
 			class_feedback = "bg-red" 
+			border_feedback = "border-red";
 		}
-		else if (actual_step == 4){
+		else if (actual_step == 4){			
 			class_feedback = "bg-violet" 
+			border_feedback = "border-violet";
 		}
-		return templateFeedback.replace("${feedback}",text).replace("${type-feedback}","Teste").replace("${id}",number_feedback).replace("${class-feedback}",class_feedback);			
+		return templateFeedback.replace("${hidden}",!uboost_grade).replace("${feedback}",text).replace("${type-feedback}",title).replace("${id}",number_feedback).replace("${class-feedback}",class_feedback).replace("${border-feedback}",border_feedback);			
 	}
-	function feedback(type, value){
-		giveFeedback(type+"-"+value);
+	function feedback(type, value,uboost_grade){
+		giveFeedback(type,value,uboost_grade);
 	}
 	
 	
@@ -597,14 +756,17 @@ $(document).ready(function () {
     };
 	
 	$("#LinkViewResumeFeedback").on("click", function (evt) {
+		console.log("1");
 		HideAllViews();
 		$("#ViewResumeFeedback").removeAttr("hidden").show();
 	});
 	$("#LinkViewEditUserData").on("click", function (evt) {
+		console.log("2");
 		HideAllViews();
 		$("#ViewEditUserData").removeAttr("hidden").show();
 	});
 	function HideAllViews(){
+		console.log("3")
 		$("#ViewResumeFeedback").attr("hidden",true).hide();
 		$("#ViewEditUserData").attr("hidden",true).hide();
 	}
