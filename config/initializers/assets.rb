@@ -8,7 +8,7 @@ Rails.application.config.assets.version = '1.0'
 # Add Yarn node_modules folder to the asset load path.
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
-Rails.application.config.assets.precompile += %w(project.css )
+Rails.application.config.assets.precompile += %w(project.scss )
 Rails.application.config.assets.precompile += %w(sb-admin.scss )
 Rails.application.config.assets.precompile += %w(landing.scss )
 Rails.application.config.assets.precompile += %w(magnific-popup.scss)

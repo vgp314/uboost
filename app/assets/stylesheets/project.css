@@ -169,10 +169,10 @@ hr.star-dark-portifolio {
   font-style: normal;
 }
 
-hr.star-dark-portifolio:after {
+/*hr.star-dark-portifolio:after {
   color: #2C3E50;
   background-color: linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255, 0) 100%);
-}
+}*/
 
 
 .width-70{
